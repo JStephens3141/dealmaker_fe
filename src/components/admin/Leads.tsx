@@ -14,10 +14,9 @@ const Leads = () => {
             const response = await fetch('http://localhost:8000/api/leads');
             const data = await response.json();
             setLeads(data);
-            console.log(data);
           }
          )();
-    });
+    }, []);
 
     const del = async (id: number) => {
       if(window.confirm('Are you sure you want to delete this Lead?'))
@@ -61,6 +60,8 @@ const Leads = () => {
                           <td>Placeholder Image</td>
                           <td>
                             <div className="btn-group mr-2">
+                              <Link to={`/admin/leads/${l.id}/edit`} 
+                                className="btn btn-sm btn-outline-secondary">Edit</Link>
                               <a href="#" className="btn btn-sm btn-outline-secondary"
                                 onClick={() =>del(l.id)}
                               >Delete</a>
